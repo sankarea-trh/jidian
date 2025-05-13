@@ -1,0 +1,517 @@
+/* 全局重置与基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Microsoft YaHei', sans-serif; /* 主字体 Inter，备用雅黑 */
+    background-color: #F8F9FA; /* 浅灰背景 */
+    color: #1F2937; /* 深灰正文 */
+    line-height: 1.6;
+    padding: 2rem; /* 增加内边距 */
+}
+
+/* 引入 Inter 字体 (需要网络连接，或者本地托管) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+.container {
+    max-width: 800px; /* 限制内容宽度 */
+    margin: 2rem auto; /* 上下边距 + 居中 */
+    background-color: #FFFFFF; /* 白色内容背景 */
+    border-radius: 8px; /* 圆角 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 微调阴影 */
+    padding: 2rem; /* 内容区域内边距 */
+}
+
+/* 顶部区域 */
+.header {
+    text-align: center;
+    margin-bottom: 2.5rem; /* 增加与下方间距 */
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: 700; /* Inter Bold */
+    color: #1F2937; /* 深灰标题 */
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-size: 16px; /* Inter Regular */
+    color: #6B7280; /* 浅灰提示 */
+}
+
+/* 文件上传区域 */
+.upload-section {
+    margin-bottom: 2rem; /* 与下方结果区间隔 */
+}
+
+.upload-area {
+    border: 2px dashed #D1D5DB; /* 默认虚线边框 - 稍浅灰 */
+    border-radius: 8px;
+    padding: 2.5rem;
+    text-align: center;
+    background-color: #F8F9FA; /* 浅灰背景 */
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    position: relative; /* 用于定位状态图标 */
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+    border-color: #2563EB; /* 主色高亮 */
+    background-color: #EFF6FF; /* 更浅蓝背景 */
+}
+
+.upload-icon {
+    font-size: 3rem; /* 图标大小 */
+    color: #9CA3AF; /* 稍深灰色 */
+    margin-bottom: 1rem;
+}
+
+.upload-area p {
+    font-size: 16px;
+    color: #6B7280;
+    margin-bottom: 0.5rem;
+}
+
+.upload-area span {
+    font-size: 14px; /* Inter Light */
+    color: #9CA3AF;
+}
+
+/* 隐藏原生文件输入框 */
+#fileInput {
+    display: none;
+}
+
+/* 文件上传状态 */
+.file-status {
+    margin-top: 1rem;
+    font-size: 14px; /* Inter Light */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.file-status .icon-success {
+    color: #10B981; /* 成功绿 */
+    /* 可以用 SVG 或字体图标 */
+}
+
+.file-status .icon-error {
+    color: #EF4444; /* 错误红 */
+     /* 可以用 SVG 或字体图标 */
+}
+
+
+/* 按钮区域 */
+.button-group {
+    display: flex;
+    justify-content: center; /* 居中按钮 */
+    gap: 1rem; /* 按钮间距 */
+    margin-top: 1.5rem; /* 与格式说明区域间距 */
+    margin-bottom: 1.5rem; /* 与下方间距调整 */
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px; /* Inter Regular */
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex; /* 用于垂直居中图标和文字 */
+    align-items: center;
+    gap: 0.5rem; /* 图标和文字间距 */
+}
+
+.btn:hover {
+    transform: translateY(-2px); /* 轻微上移 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* 增加阴影 */
+}
+
+.btn:active {
+    transform: translateY(0px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+.btn-primary {
+    background-color: #2563EB; /* 主色 */
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: #1D4ED8; /* 深一点的主色 */
+}
+
+.btn-secondary {
+    background-color: #E5E7EB; /* 浅灰色背景 */
+    color: #1F2937; /* 深灰色文字 */
+}
+
+.btn-secondary:hover {
+    background-color: #D1D5DB; /* 深一点的灰色 */
+}
+
+.btn-danger {
+    background-color: #F87171; /* 柔和的红色 */
+    color: #FFFFFF;
+}
+
+.btn-danger:hover {
+    background-color: #EF4444; /* 标准错误红 */
+}
+
+
+/* 加载状态 */
+.loading-indicator {
+    display: none; /* 默认隐藏 */
+    text-align: center;
+    margin: 1.5rem 0;
+    color: #6B7280;
+}
+
+.loading-indicator progress {
+    width: 80%;
+    max-width: 300px;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden; /* 确保圆角生效 */
+    margin-bottom: 0.5rem;
+    /* 可能需要针对不同浏览器进行样式化 */
+    appearance: none; /* 移除默认样式 */
+    -webkit-appearance: none;
+    border: none;
+}
+/* Webkit (Chrome, Safari) */
+.loading-indicator progress::-webkit-progress-bar {
+    background-color: #E5E7EB;
+    border-radius: 4px;
+}
+.loading-indicator progress::-webkit-progress-value {
+    background-color: #2563EB;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+/* Firefox */
+.loading-indicator progress::-moz-progress-bar {
+    background-color: #2563EB;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+
+/* 结果区域 - 折叠面板 */
+.results-section {
+    margin-top: 1.5rem; /* 调整与上方间距 */
+    border-top: 1px solid #E5E7EB; /* 分隔线 */
+    padding-top: 1.5rem;
+}
+
+.results-header {
+    /* background-color: #F8F9FA; */ /* 可选的头部背景色 */
+    padding: 0.75rem 0; /* 上下留白即可，无背景 */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px 8px 0 0; /* 顶部圆角 */
+}
+
+.results-header h2 {
+    font-size: 18px; /* 稍小一点的标题 */
+    font-weight: 700; /* Bold */
+    color: #1F2937;
+}
+
+.toggle-icon {
+    font-size: 1.2rem;
+    color: #6B7280;
+    transition: transform 0.3s ease;
+}
+
+.results-content {
+    max-height: 0; /* 默认隐藏 */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* 平滑动画 */
+    padding: 0 1rem; /* 折叠时无内边距 */
+    background-color: #FFFFFF; /* 确保背景色 */
+    border-radius: 0 0 8px 8px; /* 底部圆角 */
+}
+
+.results-content.expanded {
+    max-height: 1000px; /* 足够大的高度以显示内容 */
+    padding: 1.5rem 1rem; /* 展开后的内边距 */
+    border-top: 1px solid #E5E7EB; /* 展开后显示顶部边框 */
+}
+
+/* 结果展示样式 */
+#resultsOutput {
+    white-space: pre-wrap; /* 保留换行和空格 */
+    font-family: 'Menlo', 'Consolas', monospace; /* 等宽字体 */
+    font-size: 14px; /* Inter Light */
+    background-color: #F8F9FA; /* 浅灰背景 */
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    max-height: 400px; /* 限制最大高度，出现滚动条 */
+    overflow-y: auto;
+}
+
+/* 结果中的关键数据高亮 (需要 JS 配合添加 class) */
+.highlight-success {
+    color: #059669; /* 稍深的成功绿 */
+    font-weight: bold;
+}
+
+.highlight-error {
+    color: #DC2626; /* 稍深的错误红 */
+    font-weight: bold;
+}
+
+/* 错误提示 */
+.error-message {
+    color: #EF4444; /* 错误红 */
+    background-color: #FEF2F2; /* 非常浅的红色背景 */
+    border: 1px solid #FCA5A5; /* 柔和的红色边框 */
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 14px;
+    display: none; /* 默认隐藏 */
+    text-align: center;
+}
+
+/* 响应式调整 (可选，基本布局应该在移动端也可用) */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+    .container {
+        padding: 1.5rem;
+        margin: 1rem auto;
+    }
+    .header h1 {
+        font-size: 20px;
+    }
+    .header p {
+        font-size: 14px;
+    }
+    .upload-area {
+        padding: 1.5rem;
+    }
+    .button-group {
+        flex-direction: column; /* 垂直排列按钮 */
+        gap: 0.75rem;
+    }
+    .btn {
+        width: 100%; /* 按钮宽度占满 */
+    }
+    .results-header h2 {
+        font-size: 16px;
+    }
+    #resultsOutput {
+        font-size: 12px;
+    }
+}
+
+/* 文件格式说明区域 (新增样式) */
+.format-guide-section {
+    margin-top: 2rem; /* 与上传区域间距 */
+    border: 1px solid #E5E7EB; /* 细边框 */
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    overflow: hidden; /* 配合内部折叠 */
+}
+
+.format-guide-header {
+    padding: 0.75rem 1.5rem; /* 内边距 */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F8F9FA; /* 浅灰背景 */
+}
+
+.format-guide-header h3 {
+    font-size: 16px; /* 稍小标题 */
+    font-weight: 700; /* Bold */
+    color: #1F2937;
+}
+
+/* 使用与结果区相同的 toggle-icon 样式 */
+
+.format-guide-content {
+    max-height: 0; /* 默认隐藏 */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    padding: 0 1.5rem; /* 水平内边距 */
+    background-color: #FFFFFF;
+}
+
+.format-guide-content.expanded {
+    max-height: 1000px; /* 展开高度 */
+    padding: 1.5rem 1.5rem; /* 展开后内边距 */
+    border-top: 1px solid #E5E7EB; /* 展开后顶部加分隔线 */
+}
+
+.format-guide-content h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    margin-top: 1rem; /* 段落间距 */
+    color: #374151; /* 稍浅标题色 */
+}
+
+.format-guide-content h4:first-child {
+    margin-top: 0;
+}
+
+.format-example {
+    white-space: pre-wrap;
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 13px; /* 稍小字体 */
+    background-color: #F8F9FA;
+    padding: 1rem;
+    border-radius: 6px; /* 稍小圆角 */
+    border: 1px solid #E5E7EB;
+    max-height: 300px;
+    overflow-y: auto;
+    line-height: 1.5;
+}
+
+.notes-list {
+    list-style: disc; /* 使用圆点 */
+    padding-left: 1.5rem; /* 列表缩进 */
+    font-size: 14px;
+    color: #4B5563; /* 提示文字颜色 */
+}
+
+.notes-list li {
+    margin-bottom: 0.5rem;
+}
+
+.notes-list code {
+    font-family: 'Menlo', 'Consolas', monospace;
+    background-color: #E5E7EB;
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* 隐藏旧的文件格式说明 (确保移除) */
+.format-guide, .input-section, .section-title {
+    display: none;
+}
+
+/* 项目列表样式 */
+.project-list {
+    margin-bottom: 2rem;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.project-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+}
+
+.project-item:last-child {
+    margin-bottom: 0;
+}
+
+.project-item h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1F2937;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+/* 修改系数选择区域样式 */
+.coefficient-section {
+    margin-top: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.coefficient-section h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+.coefficient-group {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.coefficient-group:last-child {
+    margin-bottom: 0;
+}
+
+.coefficient-group label {
+    min-width: 150px;
+    font-size: 14px;
+    color: #374151;
+}
+
+.coefficient-select {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 14px;
+    color: #1F2937;
+}
+
+.coefficient-input {
+    width: 120px;
+    padding: 0.5rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #1F2937;
+}
+
+.coefficient-input:focus,
+.coefficient-select:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+@media (max-width: 600px) {
+    .project-item {
+        padding: 1rem;
+    }
+    
+    .coefficient-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    
+    .coefficient-group label {
+        min-width: auto;
+    }
+    
+    .coefficient-input {
+        width: 100%;
+    }
+} 
