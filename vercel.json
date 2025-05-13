@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "/",
-            "dest": "/index.html"
+            "dest": "/绩点计算器.html"
         }
     ]
 }
