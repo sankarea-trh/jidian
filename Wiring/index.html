@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>线路绩点计算器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>线路项目绩点计算器</h1>
+        </header>
+        
+        <main>
+            <section class="notice-section card">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    注意事项
+                </h2>
+                <div class="notice-content">
+                    <ul>
+                        <li>项目名称需指定，没指定将输出未命名项目</li>
+                        <li>请先在文本编辑器中编辑好数据，保存为.txt文件后上传</li>
+                        <li>不同项目之间使用3个或更多的连字符(---)分隔</li>
+                        <li>应标注阶段如：可研、初施设或前期</li>
+                        <li>内容 阶段 数值三者之间需用空格隔开</li>
+                        <li>架空公里数和电缆公里数的默认值分别为20和2，如果项目中无架空公里数和电缆公里数就使用默认值</li>
+
+
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="example-section card">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    示例数据格式
+                </h2>
+                <pre class="example-code">项目名称 示例项目1
+基建工程：新建220kV架空线路路径长20km或电缆路径长2km（70%丘陵和30%山地） 可研 1
+--------------------------------------
+项目名称 示例项目2
+用户及技改线路：新建110kV架空线路长度约20km或电缆长度约2km（70%丘陵和30%山地） 初施设 1</pre>
+            </section>
+            
+            <section class="upload-section card">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    上传项目数据
+                </h2>
+                <div class="file-upload">
+                    <label for="file-input" class="file-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="file-icon"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                        <span class="file-text">选择文件</span>
+                    </label>
+                    <input type="file" id="file-input" accept=".txt" hidden>
+                    <div id="file-name" class="file-name">未选择文件</div>
+                </div>
+                <button id="calculate-btn" class="primary-btn" disabled>计算绩点</button>
+            </section>
+            
+            <section class="results-section card" id="results-section">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    计算结果
+                </h2>
+                <div class="results-container" id="results-container">
+                    <!-- 结果将在这里动态生成 -->
+                    <p class="no-results">上传文件并计算后，结果将显示在这里</p>
+                </div>
+            </section>
+
+            <section class="adjustment-section card">
+                <h2 style="display: flex; align-items: center; justify-content: space-between;">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                        项目设置
+                    </span>
+                    <button id="toggle-adjustment-btn" class="toggle-adjustment-btn" aria-expanded="true" title="收起/展开">
+                        <span id="toggle-adjustment-icon">▼</span>
+                    </button>
+                </h2>
+                <div class="adjustment-content" id="adjustment-content">
+                    <!-- 调整系数设置将在这里动态生成 -->
+                    <p class="no-adjustments">上传文件后，将显示项目调整系数设置</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>© 2025 线路项目绩点计算器</p>
+        </footer>
+    </div>
+    
+    <script src="projectData.js"></script>
+    <script src="calculate.js"></script>
+    <script src="main.js"></script>
+</body>
+</html> 
