@@ -2,18 +2,20 @@
   "version": 2,
   "builds": [
     {
-      "src": "*.html",        
+      "src": "*.html",
       "use": "@vercel/static"
+      // 你可以保留这个，或者移除，Vercel 默认也会处理静态文件
     }
   ],
   "routes": [
     {
-      "src": "/",              
-      "dest": "/绩点计算器.html"
-    },
-    {
-      "src": "/(.*)",          
-      "dest": "/\$1"            
+      "src": "/",
+      "dest": "/index.html"
     }
+    // 移除或注释掉这条规则:
+    // {
+    //   "src": "/(.*)",
+    //   "dest": "/\\$1"
+    // }
   ]
 }
