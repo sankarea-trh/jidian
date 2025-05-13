@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Icon/icon.png">
+    <title>部门选择</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        select, button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        select {
+            min-width: 150px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>请选择您的部门</h1>
+        <select id="departmentSelect">
+            <option value="">--请选择--</option>
+            <option value="Power Distribution/index.html">配电</option>
+            <option value="Substation/index.html">变电</option>
+            <option value="Wiring/index.html">线路</option>
+        </select>
+        <button onclick="redirectToDepartment()">确定</button>
+    </div>
+
+    <script>
+        function redirectToDepartment() {
+            const selectElement = document.getElementById('departmentSelect');
+            const selectedValue = selectElement.value;
+
+            if (selectedValue) {
+                // 使用 window.location.href 进行跳转
+                window.location.href = selectedValue;
+            } else {
+                alert('请选择一个部门！');
+            }
+        }
+    </script>
+</body>
+</html> 
