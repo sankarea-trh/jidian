@@ -1,15 +1,19 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "index.html",
-            "use": "@vercel/static"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/",
-            "dest": "/绩点计算器.html"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.html",         // 构建所有 HTML 文件
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",              // 根路径跳转到主页
+      "dest": "/绩点计算器.html"
+    },
+    {
+      "src": "/(.*)",          // 匹配所有其他路径
+      "dest": "/\$1"            // 直接返回对应文件（如 /Power Distribution/index.html）
+    }
+  ]
 }
