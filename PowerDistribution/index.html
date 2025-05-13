@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配电绩点计算器</title>
+    <link rel="stylesheet" href="styles.css?v=1.0.9">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部：简洁标题 + 简短说明 -->
+        <header class="header">
+            <h1>配电绩点计算器</h1>
+            <p>上传您的 .txt 项目文件，快速计算绩点。</p>
+        </header>
+
+        <!-- 中央：文件上传区 -->
+        <section class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">⬆️</div>
+                <p>将文件拖拽到此处，或 <span style="color: #2563EB; text-decoration: underline;">点击上传</span></p>
+                <span>支持 .txt 文件格式</span>
+                <input type="file" id="fileInput" accept=".txt">
+            </div>
+            <div class="file-status" id="fileStatus"></div>
+            <div class="error-message" id="errorMessage"></div>
+        </section>
+
+        <!-- 文件格式说明 (新增折叠区域) -->
+        <section class="format-guide-section">
+            <header class="format-guide-header" id="formatGuideHeader">
+                <h3>文件格式说明</h3>
+                <span class="toggle-icon" id="formatToggleIcon">▼</span>
+            </header>
+            <div class="format-guide-content" id="formatGuideContent">
+                <h4>txt文件内容格式示例：</h4>
+                <pre class="format-example">
+项目名称：例子项目
+10kV单回路架空线：1
+钢管杆/铁塔：6
+柱上开关：8 	
+10kV电缆：9	
+箱变：4	
+低压配电箱：1
+变压器(含基础)：1
+下户数：500
+充电车位数：1
+--------------------
+项目名称 xy
+10kV单回路架空线 1
+柱上开关 2
+10kV电缆 3
+变压器（含基础）3
+</pre>
+                <h4>注意事项：</h4>
+                <ul class="notes-list">
+                    <li>设计阶段、项目类型中选项的系数均取基础数据中该系数范围的中间值，综合调整系数默认为1，如需修改请自定义系数
+                    <li>项目类型和数量之间可用空格、制表符(tab)、冒号分隔</li>
+                    <li>多个项目之间使用三个及以上的连续"-"符号行分隔</li>
+                    <li>如果txt文件中某项后没有数量，将默认按0处理</li>
+                    <li>文件必须为 <code>.txt</code></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 按钮组 -->
+        <div class="button-group">
+            <button class="btn btn-primary" id="calculateBtn" disabled>
+                <span>计算绩点</span>
+            </button>
+            <button class="btn btn-secondary" id="clearBtn">
+                <span>清空</span>
+            </button>
+        </div>
+
+        <!-- 加载指示器 -->
+        <div class="loading-indicator" id="loadingIndicator">
+            <progress id="progressBar" max="100" value="0"></progress>
+            <p>正在计算中...</p>
+        </div>
+
+        <!-- 底部：计算结果（折叠面板） -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <header class="results-header" id="resultsHeader">
+                <h2>计算结果</h2>
+                <span class="toggle-icon" id="toggleIcon">▼</span>
+            </header>
+            <div class="results-content" id="resultsContent">
+                <pre id="resultsOutput"></pre>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 加载脚本 -->
+    <script src="quotaData.js?v=1.0.9"></script>
+    <script src="quotaFinder.js?v=1.0.9"></script>
+    <script src="script.js?v=1.0.9" defer></script>
+</body>
+</html> 
