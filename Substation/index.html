@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变电绩点计算器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>变电处绩点计算器</h1>
+                <!-- 说明部分 -->
+                <div class="notice-section">
+                    <details>
+                        <summary>文件格式说明</summary>
+                        <div class="notice-content">
+                            <p>1. 每个项目以"项目名称 xxx"开始中间空格隔开，如未输入项目名称以未命名项目显示</p>
+                            <p>2. 上传的文件中需注明电气一次数据、电气二次数据和土建数据</p>
+                            <p>3. 数据格式：项目内容 数值，内容和数值用空格或冒号隔开</p>
+                            <p>4. 上传文件后请选择项目的类型技改/基建/大修</p>
+                            <p>5. 电气一次数据5个系数，存在就勾选</p>
+                            <p>6. 多个项目用-----隔开</p>
+                            <p>7. 文件必须是.txt文件</p>
+                        </div>
+                        <h3>文件格式样例：</h3>
+                        <pre class="example-content">
+项目名称 贵阳局青岩站 500kV 及 35kV 阿尔斯通断路器 A 修
+电气一次数据
+500kV配电装置设备 9
+35/66kV配电装置设备 3
+--------------
+项目名称：某变电站工程
+电气一次数据
+500kV配电装置设备：1
+220/330kV配电装置设备：2
+
+电气二次数据
+220kV以上保护及测控：1
+220kV以上母线保护及测控：1
+
+土建数据
+500KV及以上构架及基础：1
+----------------
+项目名称 xxx
+电气一次数据
+500kV配电装置设备 1
+220/330kV配电装置设备 2
+
+电气二次数据
+220kV以上保护及测控 1
+</pre>
+                    </details>
+                </div>
+                <!-- 文件上传部分 -->
+                <div class="upload-section">
+                    <h2>批量导入数据</h2>
+                    <input type="file" id="fileInput" accept=".txt" onchange="handleFileUpload(event)">
+                    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">选择文件</button>
+                </div>
+
+        <!-- 项目选择标签页 -->
+        <div id="projectTabs" class="project-tabs-container">
+            <div class="tabs-header"></div>
+            <div class="tabs-content"></div>
+        </div>
+
+        <!-- 计算结果部分 -->
+        <div class="calculation-section">
+            <button class="calculate-btn" onclick="calculateAllProjects()">计算所有项目绩点</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
